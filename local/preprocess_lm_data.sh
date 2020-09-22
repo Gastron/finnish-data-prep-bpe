@@ -4,8 +4,15 @@
 # remove [spk], capitals, kaldi uttid, trim whitespace
 # concat everything into one file
 
-text_files='peters-data/all_cleaned/text'
 lm_data_dir='data/lm_prep'
+
+if [ "$#" -ne 2 ]; then
+  echo "Usage: $0 <text-files> <outfile-name>"
+  exit 1
+fi
+
+text_files="$1"
+outfile_name=$2
 
 mkdir -p $lm_data_dir
 
@@ -16,4 +23,4 @@ cat $text_files | \
   sed -e "s/\[spk\]//g" -e "s/<UNK>//g" \
     -e "s/\[int\]//g" -e "s/\[fil\]//g" |\
   tr '[:upper:]' '[:lower:]' |\
-  awk '{$1=$1;print}' > $lm_data_dir/plain_text
+  awk '{$1=$1;print}' > $lm_data_dir/$outfile_name
