@@ -32,7 +32,7 @@ fi
 train_data_str="$data | sed -e 's:^:<s> :' -e 's:$: </s>:' |"
 dev_data_str="$devdata | sed -e 's:^:<s> :' -e 's:$: </s>:' |"
 
-$train_cmd $out/log/varigram_kn.log \
+$train_cmd --time 6:0:0 $out/log/varigram_kn.log \
   varigram_kn \
   --cutoffs="$cutoffs" \
   --dscale=$scale \

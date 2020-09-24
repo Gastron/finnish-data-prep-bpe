@@ -2,6 +2,7 @@
 # Runs the BPE estimation algorithm on data produced by local/preprocess_lm_data.sh
 # NOTE: you need the sentencepiece tool, installable from source.
 # Put the tool into path.sh or local_path.sh if using kaldi-utensils
+modeldir="exp/bpe"
 lm_data_dir='data/lm_prep'
 num_units=1500
 
@@ -9,7 +10,6 @@ num_units=1500
 . path.sh
 . parse_options.sh
 
-modeldir="exp/bpe"
 mkdir -p $modeldir
 
 $train_cmd "$modeldir"/log/spm_train_"$num_units".log \
