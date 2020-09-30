@@ -9,6 +9,7 @@ cutoffs="0 0 1" #-O --cutoffs
 scale=0.01 #-D --dscale
 prune_scale= #-E --dscale2
 extra_args="--clear_history --3nzer --arpa" #-C -3 -a
+cmd="$train_cmd"
 
 . ./path.sh
 . parse_options.sh
@@ -32,7 +33,7 @@ fi
 train_data_str="$data | sed -e 's:^:<s> :' -e 's:$: </s>:' |"
 dev_data_str="$devdata | sed -e 's:^:<s> :' -e 's:$: </s>:' |"
 
-$train_cmd --time 6:0:0 $out/log/varigram_kn.log \
+$cmd $out/log/varigram_kn.log \
   varigram_kn \
   --cutoffs="$cutoffs" \
   --dscale=$scale \

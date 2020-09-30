@@ -4,6 +4,7 @@
 # Put the tool into path.sh or local_path.sh if using kaldi-utensils
 lm_data_dir='data/lm_prep'
 num_units=1500
+modeldir="exp/bpe"
 
 . cmd.sh
 . path.sh
@@ -17,7 +18,6 @@ fi
 infile=$1
 outfile=$2
 
-modeldir="exp/bpe"
 mkdir -p $modeldir
 
 $train_cmd "$lm_data_dir"/log/spm_encode_"$num_units"_$(basename $infile).log \
