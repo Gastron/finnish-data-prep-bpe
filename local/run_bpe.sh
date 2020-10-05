@@ -19,6 +19,9 @@ $train_cmd "$modeldir"/log/spm_train_"$num_units".log \
   --character_coverage=1.0 \
   --model_type="bpe"
 
+# Vocab to plain vocab ( normal SPM format is <subword> <id> ) 
+cut -f1 "$modeldir"/bpe.$num_units.vocab > "$modeldir"/bpe.$num_units.vocab.plain
+
 $train_cmd "$lm_data_dir"/log/spm_encode_"$num_units".log \
   spm_encode --model="$modeldir"/bpe."$num_units".model \
   --output_format=piece \< "$lm_data_dir"/plain_text \> "$lm_data_dir"/text.bpe.$num_units
